@@ -2,6 +2,7 @@ package Bot;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.channel.ChannelCategory;
 import org.javacord.api.entity.channel.ServerVoiceChannel;
 import org.javacord.api.entity.channel.ServerVoiceChannelBuilder;
 import org.javacord.api.entity.server.Server;
@@ -32,12 +33,15 @@ public class Main {
             }
         });
 
-        // Add a listener which creates a channel if someone writes "!gameroom"
+        // Add a listener which creates a channel in the Game Rooms category, prepended with the user's name, if someone writes "!gameroom"
         api.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("!gameroom")) {
                 Server server = event.getServer().get();
+                ChannelCategory ccat = server.getChannelCategoriesByName("Game Rooms").get(0);
+                String uname = event.getMessageAuthor().getDisplayName();
                 ServerVoiceChannel channel = new ServerVoiceChannelBuilder(server)
-                        .setName("Game Room")
+                        .setCategory(ccat)
+                        .setName(uname + "'s Room")
                         .setUserlimit(10)
                         .create()
                         .join();
