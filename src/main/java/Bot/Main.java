@@ -18,11 +18,7 @@ public class Main {
         }
 
         // The token is the first argument of the program
-        // You can add an argument via Run > Edit Configurations > Main > Program Arguments
         String token = args[0];
-
-        // Insert your bot's token here
-        // String token = "NzI3Nzg1MjgzODczMTQ0ODk1.Xvyu0w.NyyyMWyP3QSbweP9_-FtdKxVuMY";
 
         DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
 
