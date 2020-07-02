@@ -2,6 +2,11 @@ package Bot;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.channel.ServerVoiceChannel;
+import org.javacord.api.entity.channel.ServerVoiceChannelBuilder;
+import org.javacord.api.entity.server.Server;
+
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -12,6 +17,7 @@ public class Main {
         }
 
         // The token is the first argument of the program
+        // You can add an argument via Run > Edit Configurations > Main > Program Arguments
         String token = args[0];
 
         // Insert your bot's token here
@@ -23,6 +29,32 @@ public class Main {
         api.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("!ping")) {
                 event.getChannel().sendMessage("Pong!");
+            }
+        });
+
+        // Add a listener which creates a channel if someone writes "!gameroom"
+        api.addMessageCreateListener(event -> {
+            if (event.getMessage().getContent().equalsIgnoreCase("!gameroom")) {
+                Server server = event.getServer().get();
+                ServerVoiceChannel channel = new ServerVoiceChannelBuilder(server)
+                        .setName("Game Room")
+                        .setUserlimit(10)
+                        .create()
+                        .join();
+
+                // Delete the channel if the last user leaves
+                channel.addServerVoiceChannelMemberLeaveListener(event2 -> {
+                    if (event2.getChannel().getConnectedUserIds().isEmpty()) {
+                        event2.getChannel().delete();
+                    }
+                });
+
+                // Delete the channel if no user joined in the first 30 seconds
+                api.getThreadPool().getScheduler().schedule(() -> {
+                    if (channel.getConnectedUserIds().isEmpty()) {
+                        channel.delete();
+                    }
+                }, 30, TimeUnit.SECONDS);
             }
         });
 
