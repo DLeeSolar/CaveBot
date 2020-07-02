@@ -2,7 +2,9 @@
 My first bot.
 
 ## To-Do
-Make !gameroom create the channel in a specific category.
+* Make !gameroom create the channel in a specific category.
+* Make a command for a user to add a role to themselves, to change the colour of their name.
+* Get some WTF Engine incorporated.
 
 ## Commands
 ### !ping
