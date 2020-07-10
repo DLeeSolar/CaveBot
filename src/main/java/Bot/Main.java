@@ -69,14 +69,17 @@ public class Main {
 
         // Add a listener which changes a user's role, if someone writes "!colour
         api.addMessageCreateListener(event -> {
+            String content = event.getMessage().getContent();
             //if (event.getMessage().getContent().equalsIgnoreCase("!colour")) {
-            if (event.getMessage().getContent().contains("?colour")) {
+            //if (event.getMessage().getContent().contains("?colour")) {
+            if (content.startsWith("?colour ")) {
                 // You're trying to do some stuff with lists here so that you can match parts to the list,
                 // to figure out which role (if any) need to be removed, and then add the list in the command.
                 // Ideally, the final form of this command would be "!colour <colour-code>", which removes any
                 // previous colour, and adds the desired one.
                 //
-                String[] rmessage = event.getMessage().getContent().split("\\s+");
+                //String[] rmessage = event.getMessage().getContent().split("\\s+");
+                String[] rmessage = content.split("\\s+");
                 String[] rcolours = {"B", "DS", "S", "DO", "O", "DY", "Y", "DPi", "Pi", "DPu", "Pu", "DB", "Bl", "TB", "DG", "G", "DT", "V", "T"};
                 List<String> rclist = Arrays.asList(rcolours);
 
