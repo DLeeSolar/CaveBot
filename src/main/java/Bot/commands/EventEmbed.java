@@ -17,11 +17,14 @@ public class EventEmbed implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
-        if (event.getMessage().getContent().equalsIgnoreCase("?event")) {
+        //if (event.getMessage().getContent().equalsIgnoreCase("?event")) {
+        String content = event.getMessage().getContent();
+        if (content.startsWith("?event ")) {
             String euname = event.getMessageAuthor().getDisplayName();
+            String[] emessage = content.split("\\s+");
 
             EmbedBuilder embed = new EmbedBuilder()
-                    .setTitle("Game Night")
+                    .setTitle(emessage[1])
                     .setDescription("Let's play some games together!")
                     .setAuthor(euname, "", "https://cdn.discordapp.com/embed/avatars/0.png")
                     .addField("AmongUs", "Dirt cheap. On Steam. It'd be Sus not to.")
