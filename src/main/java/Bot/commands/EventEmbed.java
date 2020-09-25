@@ -23,11 +23,11 @@ public class EventEmbed implements MessageCreateListener {
             EmbedBuilder embed = new EmbedBuilder()
                     .setTitle("Game Night")
                     .setDescription("Let's play some games together!")
-                    .setAuthor(euname)
+                    .setAuthor(euname, "", "https://cdn.discordapp.com/embed/avatars/0.png")
                     .addField("AmongUs", "Dirt cheap. On Steam. It'd be Sus not to.")
                     .addInlineField("Crewmates", "None")
                     .addInlineField("Impostors", "SIMON")
-                    .setColor(Color.getHSBColor(151,140,156))
+                    .setColor(Color.BLUE)
                     .setFooter("React to join.")
                     .setImage(new File("C:/Users/Danny/Pictures/BCb.jpg"))
                     .setThumbnail(new File("F:/Firefox_Downloads/token_1(13).png"));
