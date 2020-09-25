@@ -1,5 +1,6 @@
 package Bot;
 
+import Bot.commands.PingPong;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.channel.ChannelCategory;
@@ -27,11 +28,12 @@ public class Main {
         DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
 
         // Add a listener which answers with "Pong!" if someone writes "!ping"
-        api.addMessageCreateListener(event -> {
-            if (event.getMessage().getContent().equalsIgnoreCase("Ping!")) {
-                event.getChannel().sendMessage("Pong!");
-            }
-        });
+        //api.addMessageCreateListener(event -> {
+        //    if (event.getMessage().getContent().equalsIgnoreCase("Ping!")) {
+        //        event.getChannel().sendMessage("Pong!");
+        //    }
+        //});
+        api.addMessageCreateListener(new PingPong());
 
         // Add a listener which creates a channel in the Game Rooms category, prepended with the user's name, if someone writes "!gameroom"
         api.addMessageCreateListener(event -> {
