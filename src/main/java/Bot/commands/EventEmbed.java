@@ -1,5 +1,6 @@
 package Bot.commands;
 
+import org.javacord.api.entity.Icon;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -21,6 +22,7 @@ public class EventEmbed implements MessageCreateListener {
         String content = event.getMessage().getContent();
         if (content.startsWith("?event ")) {
             String euname = event.getMessageAuthor().getDisplayName();
+            Icon eupicture = event.getMessageAuthor().getAvatar();
             String[] emessage = content.split("\\s+");
             //Pattern tpattern = Pattern.compile("title:", Pattern.CASE_INSENSITIVE);
             //Matcher tmatcher = tpattern.matcher(content);
@@ -28,7 +30,7 @@ public class EventEmbed implements MessageCreateListener {
             EmbedBuilder embed = new EmbedBuilder()
                     .setTitle(emessage[1])
                     .setDescription(emessage[2])
-                    .setAuthor(euname, "", "https://cdn.discordapp.com/embed/avatars/0.png")
+                    .setAuthor(euname, "", eupicture)
                     //.addInlineField("Date", emessage[3])
                     //.addInlineField("Time", emessage[4])
                     .addField("Date & Time", emessage[3] + " | " + emessage[4])
