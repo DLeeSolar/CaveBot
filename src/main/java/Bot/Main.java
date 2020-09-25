@@ -1,6 +1,7 @@
 package Bot;
 
 import Bot.commands.Colour;
+import Bot.commands.EventEmbed;
 import Bot.commands.Gameroom;
 import Bot.commands.PingPong;
 import org.javacord.api.DiscordApi;
@@ -23,6 +24,7 @@ public class Main {
         api.addMessageCreateListener(new PingPong());
         api.addMessageCreateListener(new Gameroom());
         api.addMessageCreateListener(new Colour());
+        api.addMessageCreateListener(new EventEmbed());
 
         // Print the invite url of your bot
         System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
