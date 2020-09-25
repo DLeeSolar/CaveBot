@@ -12,7 +12,7 @@ import java.util.List;
 public class Colour implements MessageCreateListener {
 
     /*
-     * This command is used to change the user's colour role.
+     * This command is used to change the user's colour role if they write ?colour.
      * Any user can use this command.
      */
 

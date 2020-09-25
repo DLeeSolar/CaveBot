@@ -13,6 +13,7 @@ public class Gameroom implements MessageCreateListener {
 
     /*
      * This command is used to create Gameroom Voice Channels.
+     * Creates a channel in the Game Rooms category, prepended with the user's name, if someone writes "?gameroom".
      * Any user can use this command.
      */
 
