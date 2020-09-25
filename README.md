@@ -2,7 +2,6 @@
 My first bot.
 
 ## To-Do
-* Get commands out of Main.
 * Make a command to delete old messages.
 * Make a command for formatting events. 
 * Setup a channel on the server for talking to CaveBot. 
@@ -29,3 +28,4 @@ Has a help message if you get it wrong.
 * Make basic pingpong command.
 * Make ?gameroom create the channel in a specific category.
 * Make a command for a user to add a role to themselves, to change the colour of their name.
+* Migrate commands from Main.java to Bot.commands.<command-name>.java. 
