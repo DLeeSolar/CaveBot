@@ -1,15 +1,10 @@
 package Bot;
 
+import Bot.commands.Colour;
 import Bot.commands.Gameroom;
 import Bot.commands.PingPong;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.permission.Role;
-import org.javacord.api.entity.server.Server;
-import org.javacord.api.entity.user.User;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Main {
 
@@ -68,7 +63,8 @@ public class Main {
         });*/
 
         // Add a listener which changes a user's role, if someone writes "!colour
-        api.addMessageCreateListener(event -> {
+        api.addMessageCreateListener(new Colour());
+        /*api.addMessageCreateListener(event -> {
             String content = event.getMessage().getContent();
             //if (event.getMessage().getContent().equalsIgnoreCase("!colour")) {
             //if (event.getMessage().getContent().contains("?colour")) {
@@ -106,7 +102,7 @@ public class Main {
                     event.getChannel().sendMessage("Colour roles are B (Black), DS (Dark Salmon), S (Salmon), DO (Dark Orange), O (Orange), DY (Dark Yellow), Y (Yellow), DPi (Dark Pink), Pi (Pink), DPu (Dark Purple), DB (Dark Blue), Bl (Blue), TB (TurtleEgg Blue, DG (Dark Green), G (Green), DT (Dark Turquoise), T (Turquoise), V (Viridian)");
                 }
             }
-        });
+        });*/
 
         // Print the invite url of your bot
         System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
