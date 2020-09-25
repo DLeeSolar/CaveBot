@@ -1,18 +1,15 @@
 package Bot;
 
+import Bot.commands.Gameroom;
 import Bot.commands.PingPong;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.channel.ChannelCategory;
-import org.javacord.api.entity.channel.ServerVoiceChannel;
-import org.javacord.api.entity.channel.ServerVoiceChannelBuilder;
 import org.javacord.api.entity.permission.Role;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -36,7 +33,8 @@ public class Main {
         api.addMessageCreateListener(new PingPong());
 
         // Add a listener which creates a channel in the Game Rooms category, prepended with the user's name, if someone writes "!gameroom"
-        api.addMessageCreateListener(event -> {
+        api.addMessageCreateListener(new Gameroom());
+        /*api.addMessageCreateListener(event -> {
             if (event.getMessage().getContent().equalsIgnoreCase("?gameroom")) {
                 if (event.getServer().isPresent()) {
                     Server server = event.getServer().get();
@@ -67,7 +65,7 @@ public class Main {
                     event.getChannel().sendMessage("Server not found!");
                 }
             }
-        });
+        });*/
 
         // Add a listener which changes a user's role, if someone writes "!colour
         api.addMessageCreateListener(event -> {
