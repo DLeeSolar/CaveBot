@@ -22,18 +22,23 @@ public class EventEmbed implements MessageCreateListener {
         if (content.startsWith("?event ")) {
             String euname = event.getMessageAuthor().getDisplayName();
             String[] emessage = content.split("\\s+");
+            //Pattern tpattern = Pattern.compile("title:", Pattern.CASE_INSENSITIVE);
+            //Matcher tmatcher = tpattern.matcher(content);
 
             EmbedBuilder embed = new EmbedBuilder()
                     .setTitle(emessage[1])
-                    .setDescription("Let's play some games together!")
+                    .setDescription(emessage[2])
                     .setAuthor(euname, "", "https://cdn.discordapp.com/embed/avatars/0.png")
-                    .addField("AmongUs", "Dirt cheap. On Steam. It'd be Sus not to.")
+                    //.addInlineField("Date", emessage[3])
+                    //.addInlineField("Time", emessage[4])
+                    .addField("Date & Time", emessage[3] + " | " + emessage[4])
+                    //.addField("","")
                     .addInlineField("Crewmates", "None")
-                    .addInlineField("Impostors", "SIMON")
+                    .addInlineField("Impostors", "None")
                     .setColor(Color.BLUE)
-                    .setFooter("React to join.")
-                    .setImage(new File("C:/Users/Danny/Pictures/BCb.jpg"))
-                    .setThumbnail(new File("F:/Firefox_Downloads/token_1(13).png"));
+                    //.setFooter("React to join.")
+                    //.setImage(new File("F:/Pictures2/AmongUsIcon.png"))
+                    .setThumbnail(new File("F:/Pictures2/AmongUsIcon.png"));
 
             TextChannel channel = event.getChannel();
             channel.sendMessage(embed);
