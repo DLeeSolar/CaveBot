@@ -31,10 +31,7 @@ public class EventEmbed implements MessageCreateListener {
                     .setTitle(emessage[1])
                     .setDescription(emessage[2])
                     .setAuthor(euname, "", eupicture)
-                    //.addInlineField("Date", emessage[3])
-                    //.addInlineField("Time", emessage[4])
                     .addField("Date & Time", emessage[3] + " | " + emessage[4])
-                    //.addField("","")
                     .addInlineField("Crewmates", "None")
                     .addInlineField("Impostors", "None")
                     .setColor(Color.BLUE)
@@ -43,7 +40,14 @@ public class EventEmbed implements MessageCreateListener {
                     .setThumbnail(new File("F:/Pictures2/AmongUsIcon.png"));
 
             TextChannel channel = event.getChannel();
-            channel.sendMessage(embed);
+            channel.sendMessage(embed)
+                    .thenAccept(sentEmbed -> {
+                        sentEmbed.addReactionAddListener(revent -> {
+                            if (revent.getEmoji().equalsEmoji(":thumbsup:")) {
+                                // Then maybe need either embed.updateFields() or revent.editMessage() but not sure.
+                            }
+                        });
+                    });
 
         }
 
